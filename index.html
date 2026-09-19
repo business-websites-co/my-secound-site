@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike's Plumbing – Klerksdorp</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-deep:  #0D2B4E;
+  --blue-mid:   #1A5276;
+  --blue-accent:#2E86C1;
+  --blue-light: #D6EAF8;
+  --white:      #FFFFFF;
+  --off-white:  #F7FAFD;
+  --text:       #1a2e40;
+  --muted:      #5D7A8A;
+  --border:     #D0E4F0;
+  --radius:     10px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* ── NAV ── */
+header {
+  background: var(--blue-deep);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 16px rgba(0,0,0,.2);
+}
+
+.nav-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-block { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-name {
+  font-family: 'DM Serif Display', serif;
+  color: var(--white);
+  font-size: 1.35rem;
+  letter-spacing: -.01em;
+}
+.logo-tag { color: var(--blue-light); font-size: .72rem; font-weight: 500; opacity: .85; }
+
+nav { display: flex; gap: 1.75rem; align-items: center; }
+nav a {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  font-size: .875rem;
+  font-weight: 500;
+  transition: color .18s;
+}
+nav a:hover { color: var(--white); }
+
+.cta-call {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--blue-accent);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+  padding: .55rem 1.3rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .18s, transform .15s;
+  white-space: nowrap;
+}
+.cta-call:hover { background: #2471A3; transform: translateY(-1px); }
+
+/* ── HERO ── */
+#hero {
+  background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+  color: var(--white);
+  padding: 88px 24px 80px;
+}
+
+.hero-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-copy h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+  line-height: 1.18;
+  max-width: 540px;
+  margin-bottom: 1.1rem;
+}
+
+.hero-copy p {
+  color: var(--blue-light);
+  font-size: 1.05rem;
+  max-width: 440px;
+  margin-bottom: 2rem;
+  opacity: .9;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--white);
+  color: var(--blue-deep);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: .8rem 1.8rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background .18s, transform .15s;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+}
+.btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+.btn-secondary {
+  color: rgba(255,255,255,.8);
+  font-size: .9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  padding-bottom: 1px;
+  transition: color .18s;
+}
+.btn-secondary:hover { color: var(--white); }
+
+/* stat card */
+.hero-stat-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.stat-row { display: flex; gap: 1.2rem; align-items: flex-start; }
+.stat-icon {
+  font-size: 1.4rem;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,.1);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stat-text strong { display: block; color: var(--white); font-size: .95rem; font-weight: 600; }
+.stat-text span { color: var(--blue-light); font-size: .8rem; opacity: .85; }
+
+.rating-row {
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.stars { color: #F4D03F; font-size: 1rem; letter-spacing: .05em; }
+.rating-text { color: rgba(255,255,255,.75); font-size: .82rem; }
+.rating-text strong { color: var(--white); }
+
+/* ── SERVICES ── */
+#services {
+  background: var(--off-white);
+  padding: 80px 24px;
+}
+
+.section-wrap { max-width: 1160px; margin: 0 auto; }
+
+.section-header { margin-bottom: 2.5rem; }
+.section-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  color: var(--blue-deep);
+  margin-bottom: .5rem;
+  line-height: 1.2;
+}
+.section-header p { color: var(--muted); max-width: 480px; font-size: .95rem; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.svc-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.svc-card:hover {
+  border-color: var(--blue-accent);
+  box-shadow: 0 4px 20px rgba(46,134,193,.12);
+}
+
+.svc-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.svc-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  margin-bottom: .45rem;
+}
+.svc-card p { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+
+/* ── ABOUT ── */
+#about {
+  padding: 80px 24px;
+  background: var(--white);
+}
+
+.about-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-visual {
+  background: var(--blue-deep);
+  border-radius: 16px;
+  padding: 2.5rem;
+  color: var(--white);
+}
+
+.about-visual h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--blue-light);
+}
+
+.value-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.value-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: .9rem;
+  color: rgba(255,255,255,.85);
+  line-height: 1.5;
+}
+.value-list li::before {
+  content: '✓';
+  background: var(--blue-accent);
+  color: var(--white);
+  font-weight: 700;
+  font-size: .75rem;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.about-copy h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  color: var(--blue-deep);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.about-copy p { color: var(--muted); font-size: .95rem; margin-bottom: .9rem; line-height: 1.7; }
+
+.address-block {
+  margin-top: 1.5rem;
+  background: var(--off-white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  font-size: .875rem;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.address-block span { display: flex; align-items: center; gap: .5rem; }
+.address-block strong { color: var(--blue-deep); }
+
+/* ── REVIEWS ── */
+#reviews {
+  background: var(--blue-deep);
+  padding: 72px 24px;
+  color: var(--white);
+}
+
+.reviews-inner { max-width: 1160px; margin: 0 auto; }
+.reviews-inner h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin-bottom: .4rem;
+}
+.reviews-inner .sub { color: var(--blue-light); font-size: .9rem; margin-bottom: 2.5rem; opacity: .85; }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.review-stars { color: #F4D03F; font-size: .9rem; margin-bottom: .6rem; }
+.review-text { font-size: .875rem; color: rgba(255,255,255,.82); line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+.reviewer { font-size: .78rem; color: var(--blue-light); font-weight: 600; opacity: .8; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--off-white);
+  padding: 80px 24px;
+}
+
+.contact-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  color: var(--blue-deep);
+  margin-bottom: .6rem;
+  line-height: 1.2;
+}
+.contact-info .sub { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+
+.contact-detail {
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.cd-icon {
+  width: 42px; height: 42px;
+  background: var(--blue-deep);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  color: var(--white);
+}
+.cd-text strong {
+  display: block;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: .15rem;
+  letter-spacing: .02em;
+}
+.cd-text a, .cd-text span {
+  color: var(--blue-deep);
+  font-weight: 600;
+  font-size: .95rem;
+  text-decoration: none;
+}
+.cd-text a:hover { color: var(--blue-accent); }
+
+.availability {
+  margin-top: 1.75rem;
+  background: var(--blue-deep);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 1.1rem 1.4rem;
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.avail-dot {
+  width: 10px; height: 10px;
+  background: #2ECC71;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(46,204,113,.25);
+}
+
+.contact-form-box {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 2.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.06);
+}
+.contact-form-box h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--blue-deep);
+  margin-bottom: 1.5rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field { display: flex; flex-direction: column; gap: .3rem; margin-bottom: .9rem; }
+.field label { font-size: .78rem; font-weight: 600; color: var(--muted); }
+
+.field input,
+.field textarea,
+.field select {
+  padding: .7rem .9rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+  resize: none;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--blue-accent);
+  box-shadow: 0 0 0 3px rgba(46,134,193,.12);
+}
+.field textarea { min-height: 100px; }
+
+.btn-submit {
+  width: 100%;
+  background: var(--blue-deep);
+  color: var(--white);
+  border: none;
+  padding: .9rem;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .18s;
+  margin-top: .25rem;
+}
+.btn-submit:hover { background: var(--blue-mid); }
+
+/* ── FOOTER ── */
+footer {
+  background: #091D30;
+  color: rgba(255,255,255,.5);
+  text-align: center;
+  padding: 1.5rem 24px;
+  font-size: .78rem;
+}
+footer strong { color: rgba(255,255,255,.8); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-stat-card { display: none; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 600px) {
+  nav { display: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  #hero { padding: 60px 20px 56px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <div class="logo-block">
+      <span class="logo-name">Mike's Plumbing</span>
+      <span class="logo-tag">Klerksdorp &amp; Surrounds</span>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:0824417789" class="cta-call">📞 Call Now</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>Plumbing you can count on, in Klerksdorp</h1>
+      <p>Fast, reliable plumbing services — from leak detection to emergency repairs. Open 24 hours, 7 days a week.</p>
+      <div class="hero-actions">
+        <a href="tel:0824417789" class="btn-primary">📞 Call Now — 082 441 7789</a>
+        <a href="#contact" class="btn-secondary">Send a message</a>
+      </div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-row">
+        <div class="stat-icon">🕐</div>
+        <div class="stat-text">
+          <strong>Open 24 Hours</strong>
+          <span>Emergency callouts available any time</span>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon">📍</div>
+        <div class="stat-text">
+          <strong>Based in Flimieda</strong>
+          <span>15 Suikerbos St, Klerksdorp, 2571</span>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon">🔧</div>
+        <div class="stat-text">
+          <strong>Fully Equipped</strong>
+          <span>All repairs, installations &amp; maintenance</span>
+        </div>
+      </div>
+      <div class="rating-row">
+        <span class="stars">★★★★</span>
+        <span class="rating-text"><strong>4.0</strong> — 13 Google reviews</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="section-header">
+      <h2>What we handle</h2>
+      <p>From routine maintenance to urgent repairs — Mike's team has the tools and experience to fix it properly.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <span class="svc-icon">🔍</span>
+        <h3>Leak Detection</h3>
+        <p>Pinpoint hidden leaks quickly without unnecessary damage to walls or floors. Fast diagnosis, honest advice.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">♨️</span>
+        <h3>Geyser Repair &amp; Replacement</h3>
+        <p>Faulty element, thermostat, or full replacement — all geyser makes and models serviced promptly.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🚨</span>
+        <h3>Emergency Plumbing</h3>
+        <p>Burst pipe in the middle of the night? We're available 24/7 for urgent callouts across Klerksdorp.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🚿</span>
+        <h3>Bathroom Installations</h3>
+        <p>New toilets, basins, showers, and full fitouts installed neatly and correctly the first time.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🌊</span>
+        <h3>Drain Clearing</h3>
+        <p>Blocked sinks, toilets, or stormwater drains cleared efficiently — no mess left behind.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🏗️</span>
+        <h3>Pipe Repairs</h3>
+        <p>Cracked, corroded, or burst pipes repaired or replaced with quality materials and lasting results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <h3>Why customers choose Mike's</h3>
+      <ul class="value-list">
+        <li>Fast response times — we don't keep you waiting</li>
+        <li>Honest, upfront pricing with no hidden fees</li>
+        <li>Experienced, reliable plumbers on every job</li>
+        <li>Clean workmanship — we respect your home</li>
+        <li>Available 24 hours for emergencies</li>
+        <li>Locally based in Klerksdorp for quick callouts</li>
+      </ul>
+    </div>
+    <div class="about-copy">
+      <h2>Local plumbers who show up and get it done</h2>
+      <p>Mike's Plumbing has been serving homes and businesses across Klerksdorp and the surrounding area for years. We built our reputation on doing the job right, being reachable, and treating every client's property with care.</p>
+      <p>Whether it's a small dripping tap or a full bathroom installation, we bring the same commitment to quality on every job. Our team is equipped for both routine maintenance and emergency repairs.</p>
+      <div class="address-block">
+        <span>📍 <strong>15 Suikerbos St, Flimieda, Klerksdorp, 2571</strong></span>
+        <span>📞 <strong>082 441 7789</strong></span>
+        <span>🕐 <strong>Open 24 hours, 7 days a week</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <h2>What our customers say</h2>
+    <p class="sub">4.0 stars · 13 reviews on Google Maps</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Amazing Service! I was completely satisfied! Highly recommended — efficient, friendly, clean and fair priced. Overall great communication and customer service!"</p>
+        <span class="reviewer">Yolandie Harmse · Google Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Service was fast and excellent. I will definitely call them again."</p>
+        <span class="reviewer">Gina Walters · Local Guide · Google Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★</div>
+        <p class="review-text">"Reliable team that communicates well. Confirmed arrival time and kept us updated throughout. Good workmanship on a tricky job."</p>
+        <span class="reviewer">Google Customer · Klerksdorp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Get in touch</h2>
+      <p class="sub">Call us directly or send a message and we'll get back to you quickly.</p>
+
+      <div class="contact-detail">
+        <div class="cd-icon">📞</div>
+        <div class="cd-text">
+          <strong>Phone</strong>
+          <a href="tel:0824417789">082 441 7789</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="cd-icon">📍</div>
+        <div class="cd-text">
+          <strong>Address</strong>
+          <span>15 Suikerbos St, Flimieda, Klerksdorp, 2571</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="cd-icon">✉️</div>
+        <div class="cd-text">
+          <strong>Email</strong>
+          <a href="mailto:info@mikesplumbing.co.za">info@mikesplumbing.co.za</a>
+        </div>
+      </div>
+
+      <div class="availability">
+        <div class="avail-dot"></div>
+        <span>Open 24 hours — including weekends &amp; public holidays</span>
+      </div>
+    </div>
+
+    <div class="contact-form-box">
+      <h3>Send us a message</h3>
+      <div class="form-row">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" placeholder="e.g. Johan">
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" placeholder="e.g. Botha">
+        </div>
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="e.g. 082 000 0000">
+      </div>
+      <div class="field">
+        <label>Service Required</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>Leak Detection</option>
+          <option>Geyser Repair / Replacement</option>
+          <option>Emergency Plumbing</option>
+          <option>Bathroom Installation</option>
+          <option>Drain Clearing</option>
+          <option>Pipe Repair</option>
+          <option>Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Describe the Problem</label>
+        <textarea placeholder="Tell us what's happening so we can help faster…"></textarea>
+      </div>
+      <button class="btn-submit">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <strong>Mike's Plumbing</strong> · 15 Suikerbos St, Flimieda, Klerksdorp · 082 441 7789</p>
+</footer>
+
+</body>
+</html>
